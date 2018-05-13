@@ -1,0 +1,23 @@
+<div *ngIf="uncompletedTasks.length  > 0">
+    <p>Uncompleted tasks</p>
+    <ul>
+        <li *ngFor="let task of uncompletedTasks">
+            <input type="checkbox" (click)="handleCheck(task.id)">
+                {{ task.description }}
+            <button type="button" (click)="handleRemove(task.id)">Remove</button>
+        </li>
+    </ul>
+    
+</div>
+
+<div *ngIf="completedTasks.length  > 0">
+    <p>Completed tasks</p>
+    <ul>
+        <li *ngFor="let task of completedTasks">
+            <input type="checkbox" (click)="handleCheck(task.id)" checked>
+                <span>{{ task.description }}</span>
+            <button type="button" (click)="handleRemove(task.id)">Remove</button>
+        </li>
+    </ul>
+    <button type="button" (click)="handleRemoveCompleted()">Remove completed</button>
+</div>
