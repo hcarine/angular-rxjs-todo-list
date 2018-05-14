@@ -12,7 +12,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 
 ### Deployment
-* [RxJS](https://github.com/ReactiveX/rxjs/blob/master/MIGRATION.md)
+* [RxJS 6](https://github.com/ReactiveX/rxjs/blob/master/MIGRATION.md)
 * [The RxJS Library](https://angular.io/guide/rx-library)
 * [Angular deployment](https://angular.io/guide/deployment)
 * [Angular 5 Deployment - Deploy your Angular App](https://coursetro.com/posts/code/112/Angular-5-Deployment---Deploy-your-Angular-App)

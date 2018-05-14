@@ -44,6 +44,7 @@ export class TodolistService {
             error => console.log(error),
             () => console.log('Done')
         );
+        subscription.unsubscribe(); // For performance
         return results;
     }
 }
