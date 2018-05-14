@@ -1,4 +1,4 @@
-<div *ngIf="uncompletedTasks.length > 0">
+<div *ngIf="uncompletedTasks['length'] > 0">
     <p>Uncompleted tasks</p>
     <ul>
         <li *ngFor="let task of uncompletedTasks">
@@ -10,7 +10,7 @@
     
 </div>
 
-<div *ngIf="completedTasks.length > 0">
+<div *ngIf="completedTasks['length'] > 0">
     <p>Completed tasks</p>
     <ul>
         <li *ngFor="let task of completedTasks">
