@@ -35,8 +35,8 @@ export class TodolistService {
     }
 
     getTasks(): Observable<Tasks> {
-        return new Observable(localObserver => { // create obsercerable object
-            this.observer = localObserver; // convert this.observer to Observable's child object which is observer
+        return new Observable(localObserver => { // create observable object
+            this.observer = localObserver; // convert this.observer from any to Observable's child object which is observer
             this.observer.next(this.tasks);
         });
     }

@@ -2,6 +2,12 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.1. You may want to know about how you can [start here](ANGULAR.md) and view [online demo here](https://nguyenkhois.github.io/angular-rxjs-todo-list/dist/).
 
+You may want to view about these things in this project:
+* Angular 6.0.2 (ng-template) and RxJS 6.1.0
+* Component interaction (@input, services, OnInit, OnDestroy)
+* RxJS (observable, observer, subscription -> .subscribe(), .unsubscribe(), next())
+* Re-rendering
+
 ## Overview
 ![Overview](src/assets/overviewstructure.png)
 
