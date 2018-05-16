@@ -19,6 +19,6 @@ You may want to view about these things in this project:
 
 ### Deployment
 * [RxJS 6](https://github.com/ReactiveX/rxjs/blob/master/MIGRATION.md)
-* [The RxJS Library](https://angular.io/guide/rx-library)
-* [Angular deployment](https://angular.io/guide/deployment)
+* [Angular - The RxJS Library](https://angular.io/guide/rx-library)
+* [Angular - Deployment](https://angular.io/guide/deployment)
 * [Angular 5 Deployment - Deploy your Angular App](https://coursetro.com/posts/code/112/Angular-5-Deployment---Deploy-your-Angular-App)
