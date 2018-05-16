@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Task, Tasks } from '../app.interfaces';
 import { TodolistService } from '../todolist.service';
 
@@ -8,18 +8,28 @@ import { TodolistService } from '../todolist.service';
   styleUrls: ['./todolist.component.css']
 })
 export class TodolistComponent implements OnInit {
+    @Input()taskStatus: boolean;
+
+    statusText: string;
+    taskList: Tasks;
+
     constructor(private todolistService: TodolistService) { }
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.todolistService.getTasks(this.taskStatus)
+                            .subscribe(listByStatus => {
+                                console.log('within todolis-component-subscribe-before', this.taskStatus, listByStatus);
+                                this.taskList = listByStatus;
+                                this.statusText = this.taskStatus ? 'Completed tasks' : 'Uncompleted tasks';
+                                console.log('within todolis-component-subscribe-after', this.taskStatus, listByStatus);
+                                console.log('get direct from service', this.todolistService.tasks.filter(item => item.isDone));
+                            });
+    }
 
     // Auto listen to the service and get its values from method getAllTasks()
-    get completedTasks() {
-        return this.todolistService.getTasks(true);
-    }
-
-    get uncompletedTasks() {
-        return this.todolistService.getTasks(false);
-    }
+    /* get getTaskList() {
+        return this.todolistService.getTasks(this.taskStatus);
+    } */
 
     handleCheck(taskId: number) {
         this.todolistService.completeTask(taskId);
