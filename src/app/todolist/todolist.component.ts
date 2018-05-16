@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Task, Tasks } from '../app.interfaces';
+import { Tasks } from '../app.interfaces';
 import { TodolistService } from '../todolist.service';
 
 @Component({

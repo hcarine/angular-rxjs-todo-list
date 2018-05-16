@@ -15,18 +15,17 @@ export class AppComponent implements OnInit, OnDestroy {
     constructor(private todolistService: TodolistService) {}
 
     ngOnInit() {
+        // Auto listening from service
         this.subscription = this.todolistService.getTasks()
-            .subscribe(list => {
-                this.taskList = list;
-            });
+                                .subscribe(list => {
+                                    this.taskList = list;
+                                });
     }
 
     ngOnDestroy() {
-        // For performance
-        this.subscription.unsubscribe();
+        this.subscription.unsubscribe(); // For performance
     }
 
-    // Auto listen to the service and get its values from method getAllTasks()
     filteredTaskList(status: boolean, tasks: Tasks) {
         return this.todolistService.filteredTasks(status, tasks);
     }

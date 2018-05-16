@@ -21,6 +21,5 @@ export class TodoformComponent implements OnInit {
             this.todolistService.addTask(newTask);
             txtInput.value = '';
         }
-        // console.log(this.todolistService.getAllTasks()); // Testing purpose
     }
 }
