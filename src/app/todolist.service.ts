@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Task, Tasks } from './app.interfaces';
 
-import { Observable, of} from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +11,7 @@ export class TodolistService {
     tasks: Tasks = [];
     observer: any;
 
-    constructor() {
-        this.tasks = [];
-    }
+    constructor() { }
 
     addTask(newTask: Task) {
         this.tasks = [...this.tasks, newTask];
@@ -36,25 +34,14 @@ export class TodolistService {
         this.observer.next(this.tasks);
     }
 
-    getTasks(status: boolean): Observable<Tasks> {
-        // Convert to observable object
-        /* let results: any = [];
-        const tasksObservable = of(this.tasks.filter(item => item.isDone === status));
-        const subscription = tasksObservable.subscribe(
-            val => {
-                results = val;
-            },
-            error => console.log(error),
-            () => console.log('Done')
-        );
-        subscription.unsubscribe(); // For performance
-        return results; */
-
+    getTasks(): Observable<Tasks> {
         return new Observable(localObserver => { // create obsercerable object
-            console.log('service-status', status);
             this.observer = localObserver; // convert this.observer to Observable's child object which is observer
-            const filteredTasks = this.tasks.filter(item => item.isDone === status);
-            localObserver.next(filteredTasks);
+            this.observer.next(this.tasks);
         });
+    }
+
+    filteredTasks(status: boolean, taskList: Tasks) {
+        return taskList.filter(item => item.isDone === status);
     }
 }

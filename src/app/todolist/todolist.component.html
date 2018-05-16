@@ -1,6 +1,12 @@
 <div>
     <div *ngIf="taskList.length > 0">
-        <p>{{statusText}}</p>
+        <p *ngIf="taskStatus; else elseTaskTitle">
+            Completed tasks
+        </p>
+        <ng-template #elseTaskTitle>
+            <p>Uncompleted tasks</p>
+        </ng-template>
+
         <ul>
             <li *ngFor="let task of taskList">
                     <span *ngIf="task.isDone; else elseBlock">

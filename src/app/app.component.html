@@ -4,6 +4,6 @@
 
     <app-todoform></app-todoform>
     
-    <app-todolist [taskStatus]="false"></app-todolist>
-    <app-todolist [taskStatus]="true"></app-todolist>
+    <app-todolist [taskStatus]="false" [taskList]="filteredTaskList(false, taskList)"></app-todolist>
+    <app-todolist [taskStatus]="true" [taskList]="filteredTaskList(true, taskList)"></app-todolist>
 </div>
