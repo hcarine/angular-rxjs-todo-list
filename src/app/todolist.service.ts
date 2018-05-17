@@ -15,7 +15,7 @@ export class TodolistService {
     constructor() {
         this.objObservable = new Observable((localObserver) => {
             this.objObserver = localObserver; // Convert this.objObserver from any to an observer object
-            this.objObserver.next(this.tasks); // Connect this.tasks to observable object by oserver
+            this.objObserver.next(this.tasks); // Connect this.tasks to observable object by observer
         });
     }
 
