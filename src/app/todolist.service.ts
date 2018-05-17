@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Task, Tasks } from './app.interfaces';
 
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,39 +9,42 @@ import { Observable } from 'rxjs';
 
 export class TodolistService {
     tasks: Tasks = [];
-    observer: any;
+    public objObservable: any;
+    private objObserver: any;
 
-    constructor() { }
+    constructor() {
+        this.objObservable = new Observable((localObserver) => {
+            this.objObserver = localObserver; // Convert this.objObserver from any to an observer object
+            this.objObserver.next(this.tasks); // Connect this.tasks to observable object by oserver
+        });
+    }
+
+    getTasks(): Observable<Tasks> {
+        return this.objObservable;
+    }
 
     addTask(newTask: Task) {
         this.tasks = [...this.tasks, newTask];
-        this.observer.next(this.tasks);
+        return this.objObserver.next(this.tasks);
     }
 
     completeTask(taskId: number) {
         const itemIndex = this.tasks.findIndex((item: Task) => item.id === taskId);
         this.tasks = this.tasks.map((item: Task, index: number) => index === itemIndex ? {...item, isDone: !item.isDone} : item);
-        this.observer.next(this.tasks);
+        return this.objObserver.next(this.tasks);
     }
 
     removeTask(taskId: number) {
         this.tasks = this.tasks.filter((item: Task) => item.id !== taskId);
-        this.observer.next(this.tasks);
+        return this.objObserver.next(this.tasks);
     }
 
     removeCompleted() {
         this.tasks = this.tasks.filter((item: Task) => !item.isDone);
-        this.observer.next(this.tasks);
-    }
-
-    getTasks(): Observable<Tasks> {
-        return new Observable(localObserver => { // create observable object
-            this.observer = localObserver; // convert this.observer from any to Observable's child object which is observer
-            this.observer.next(this.tasks);
-        });
+        return this.objObserver.next(this.tasks);
     }
 
     filteredTasks(status: boolean, taskList: Tasks) {
-        return taskList.filter(item => item.isDone === status);
+        return taskList.filter((item: Task) => item.isDone === status);
     }
 }
